@@ -86,9 +86,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: boilerplate_rails_production
-    username: boilerplate_rails
-    password: <%= ENV["BOILERPLATE_RAILS_DATABASE_PASSWORD"] %>
+    url: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *primary_production
     database: boilerplate_rails_production_cache
