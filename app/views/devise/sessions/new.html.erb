@@ -1,30 +1,48 @@
-<div class="container flex-col gap-1 px-5 py-24 mx-auto flex flex-wrap items-start justify-center">
-  <h2>Log in</h2>
+<div class="card bg-base-100 w-full max-w-md shadow-xl">
+  <div class="card-body p-6 sm:p-8">
+    <h2 class="card-title text-2xl font-bold text-center mb-6">Login</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="flex flex-col gap-1">
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me, class: "checkbox"  %>
-          <%= f.label :remember_me %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="grid gap-y-4">
+        <div>
+          <%= f.label :email, class: "label" do %>
+            <span class="label-text">Email</span>
+          <% end %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "seuemail@exemplo.com", required: true, class: "input input-bordered w-full" %>
         </div>
-      <% end %>
 
-      <div class="actions">
-        <%= f.submit "Log in" %>
+        <div>
+          <%= f.label :password, class: "label" do %>
+            <span class="label-text">Senha</span>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Sua senha", required: true, class: "input input-bordered w-full" %>
+        </div>
+
+        <div class="flex items-center justify-between mt-2">
+          <% if devise_mapping.rememberable? %>
+            <div class="form-control">
+              <label class="label cursor-pointer gap-2">
+                <%= f.check_box :remember_me, class: "checkbox checkbox-primary" %>
+                <span class="label-text">Lembrar-me</span>
+              </label>
+            </div>
+          <% end %>
+          <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "text-sm text-primary hover:underline" %>
+        </div>
+
+        <div class="form-control mt-6">
+          <%= f.submit "Entrar", class: "btn btn-primary w-full" %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <%= render "devise/shared/links" %>
+    <div class="divider my-6">OU</div>
+
+    <div class="text-center">
+      <p class="text-sm">
+        Não tem uma conta?
+        <%= link_to "Crie uma agora", new_registration_path(resource_name), class: "link link-primary hover:underline" %>
+      </p>
+    </div>
+  </div>
 </div>

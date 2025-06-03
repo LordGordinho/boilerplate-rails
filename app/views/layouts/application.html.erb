@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark" lang="pt-BR">
+<html data-theme="dracula" lang="pt-BR">
   <head>
     <title><%= content_for(:title) || "Boilerplate Rails" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,9 +23,83 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+  <body class="bg-base-200 flex flex-col min-h-screen flex-grow box-border">
+    <% if flash[:notice] %>
+      <div 
+        data-controller="notification"
+        data-notification-delay-value="2000"
+        class="toast transition transform duration-1000 hidden"
+        data-transition-enter-from="opacity-0 translate-x-6"
+        data-transition-enter-to="opacity-100 translate-x-0"
+        data-transition-leave-from="opacity-100 translate-x-0"
+        data-transition-leave-to="opacity-0 translate-x-6"
+        role="alert"
+      >
+        <div role="alert" class="alert alert-success">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span><%= flash[:notice][:message] %></span>
+        </div>
+      </div>
+    <% end %>
+    <div class="navbar bg-base-100 shadow-lg rounded-b-box flex-wrap">
+      <div class="flex-1">
+        <a class="btn btn-ghost text-xl">Minha Aplicação</a>
+      </div>
+      <div class="flex-none gap-2">
+        <ul class="menu menu-horizontal px-1">
+          <li><a>Link 1</a></li>
+          <li>
+            <details>
+              <summary>
+                Menu
+              </summary>
+              <ul class="p-2 bg-base-100 rounded-t-none z-[2]">
+                <li><a>Submenu 1</a></li>
+                <li><a>Submenu 2</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img alt="Avatar do usuário" src="https://placehold.co/100x100/000000/FFFFFF?text=U" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f87171/ffffff?text=Erro!';"/>
+            </div>
+          </div>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
+            <li>
+              <%= link_to "Perfil", edit_user_registration_path, class: "justify-between" %>  
+            </li>
+            <li><a>Configurações</a></li>
+            <li>
+              <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "justify-between" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-grow p-4">
+      <div class="container mx-auto">
+        <%= yield %>
+      </div>
     </main>
+
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content rounded-t-box">
+      <aside>
+        <p>Copyright © <%= DateTime.now.strftime("%Y %H:%M") %> - Todos os direitos reservados por Minha Aplicação Inc.</p>
+      </aside>
+    </footer>
   </body>
 </html>
