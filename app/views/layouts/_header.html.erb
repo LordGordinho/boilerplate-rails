@@ -1,0 +1,41 @@
+<div class="navbar bg-base-100 shadow-lg rounded-none flex-wrap sticky top-0 z-40"> <!-- Cantos retos, sticky e z-index -->
+  <div class="flex-1">
+    <!-- Título da aplicação com tipografia Bauhaus -->
+    <a href="/" class="btn btn-ghost text-2xl font-black uppercase tracking-wider">Minha Aplicação</a>
+  </div>
+  <div class="flex-none gap-2">
+    <ul class="menu menu-horizontal px-1">
+      <li><a class="font-medium rounded-none">Link 1</a></li> <!-- Cantos retos para itens de menu se desejado -->
+      <li>
+        <details>
+          <summary class="font-medium rounded-none"> <!-- Cantos retos -->
+            Menu
+          </summary>
+          <!-- Menu dropdown com cantos retos -->
+          <ul class="p-2 bg-base-100 rounded-none shadow-lg z-[1] mt-1">
+            <li><a class="font-medium rounded-none">Submenu 1</a></li>
+            <li><a class="font-medium rounded-none">Submenu 2</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full"> <!-- Avatar circular é mantido por ser um padrão moderno -->
+          <img alt="Avatar do usuário" src="[https://placehold.co/100x100/005F9F/FFFFFF?text=U](https://placehold.co/100x100/005F9F/FFFFFF?text=U)" onerror="this.onerror=null;this.src='[https://placehold.co/100x100/f87171/ffffff?text=X](https://placehold.co/100x100/f87171/ffffff?text=X)';"/> <!-- Cor de placeholder alterada e fallback -->
+        </div>
+      </div>
+      <!-- Menu dropdown do usuário com cantos retos e texto destacado -->
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-none w-52">
+        <li>
+          <%= link_to "Perfil", edit_user_registration_path, class: "justify-between font-medium" %> <!-- edit_user_registration_path -->
+        </li>
+        <li><a class="font-medium">Configurações</a></li>
+        <li>
+          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "w-full text-left font-medium text-red-600 hover:bg-red-100 p-2 rounded-none" %> <!-- destroy_user_session_path, estilizado para parecer um item de menu -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

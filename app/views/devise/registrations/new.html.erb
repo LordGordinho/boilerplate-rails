@@ -1,29 +1,37 @@
-<h2>Sign up</h2>
+<div class="card bg-base-100 w-full max-w-md shadow-xl rounded-2xl border border-base-300/50"> <!-- bg-base-100 é branco -->
+  <div class="card-body p-8 sm:p-10">
+    <h2 class="text-2xl font-bold text-base-content text-center mb-8">Criar Nova Conta</h2> <!-- text-base-content -->
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "space-y-6"}) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium text-base-content mb-1.5" %> <!-- text-base-content -->
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full rounded-lg py-2.5 px-3.5 text-base focus:border-primary focus:ring-primary/50", placeholder: "seu.email@exemplo.com", required: true %>
+      </div>
+
+      <div>
+        <%= f.label :password, class: "block text-sm font-medium text-base-content mb-1.5" %> <!-- text-base-content -->
+        <% if @minimum_password_length %>
+        <p class="text-xs text-base-content/70 mb-1"> <!-- text-base-content/70 -->
+          (<%= @minimum_password_length %> caracteres no mínimo)
+        </p>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full rounded-lg py-2.5 px-3.5 text-base focus:border-primary focus:ring-primary/50", placeholder: "••••••••", required: true %>
+      </div>
+
+      <div>
+        <%= f.label :password_confirmation, "Confirme a Senha", class: "block text-sm font-medium text-base-content mb-1.5" %> <!-- text-base-content -->
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full rounded-lg py-2.5 px-3.5 text-base focus:border-primary focus:ring-primary/50", placeholder: "••••••••", required: true %>
+      </div>
+
+      <div class="pt-2">
+        <%= f.submit "Criar Conta", class: "btn btn-primary w-full rounded-lg font-semibold text-base py-3" %>
+      </div>
+    <% end %>
+
+    <div class="divider my-6 text-sm text-base-content/50">Já possui uma conta?</div> <!-- text-base-content/50 -->
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

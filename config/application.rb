@@ -42,6 +42,7 @@ module BoilerplateRails
     config.generators.system_tests = nil
     config.to_prepare do
       Devise::SessionsController.layout("auth")
+      Devise::RegistrationsController.layout("auth", only: [:new, :create])
     end
   end
 end

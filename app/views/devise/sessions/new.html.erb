@@ -1,47 +1,49 @@
-<div class="card bg-base-100 w-full max-w-md shadow-xl">
+<!-- _form_login.html.erb (ou nome similar para o partial do formulário) -->
+<div class="card bg-base-100 w-full max-w-md shadow-xl rounded-none"> <!-- Cantos retos -->
   <div class="card-body p-6 sm:p-8">
-    <h2 class="card-title text-2xl font-bold text-center mb-6">Login</h2>
+    <h2 class="card-title text-2xl font-bold text-center mb-6 uppercase tracking-wider">Login</h2> <!-- Tipografia com mais impacto -->
+    <%= render "devise/shared/error_messages", resource: resource %> <!-- Renderização de mensagens de erro -->
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="grid gap-y-4">
         <div>
           <%= f.label :email, class: "label" do %>
-            <span class="label-text">Email</span>
+            <span class="label-text font-medium">Email</span> <!-- Fonte do label um pouco mais destacada -->
           <% end %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "seuemail@exemplo.com", required: true, class: "input input-bordered w-full" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "seuemail@exemplo.com", required: true, class: "input input-bordered w-full rounded-none" %> <!-- Cantos retos -->
         </div>
 
         <div>
           <%= f.label :password, class: "label" do %>
-            <span class="label-text">Senha</span>
+            <span class="label-text font-medium">Senha</span> <!-- Fonte do label um pouco mais destacada -->
           <% end %>
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Sua senha", required: true, class: "input input-bordered w-full" %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Sua senha", required: true, class: "input input-bordered w-full rounded-none" %> <!-- Cantos retos -->
         </div>
 
         <div class="flex items-center justify-between mt-2">
           <% if devise_mapping.rememberable? %>
             <div class="form-control">
               <label class="label cursor-pointer gap-2">
-                <%= f.check_box :remember_me, class: "checkbox checkbox-primary" %>
+                <%= f.check_box :remember_me, class: "checkbox checkbox-primary rounded-sm" %> <!-- Cantos suavemente arredondados ou retos -->
                 <span class="label-text">Lembrar-me</span>
               </label>
             </div>
           <% end %>
-          <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "text-sm text-primary hover:underline" %>
+          <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "text-sm text-primary hover:underline font-medium" %>
         </div>
 
         <div class="form-control mt-6">
-          <%= f.submit "Entrar", class: "btn btn-primary w-full" %>
+          <%= f.submit "Entrar", class: "btn btn-primary w-full rounded-none font-semibold text-base" %> <!-- Cantos retos, texto em negrito e tamanho ajustado -->
         </div>
       </div>
     <% end %>
 
-    <div class="divider my-6">OU</div>
+    <div class="divider my-6 text-sm font-medium">OU</div> <!-- Divisor com texto um pouco mais destacado -->
 
     <div class="text-center">
       <p class="text-sm">
         Não tem uma conta?
-        <%= link_to "Crie uma agora", new_registration_path(resource_name), class: "link link-primary hover:underline" %>
+        <%= link_to "Crie uma agora", new_registration_path(resource_name), class: "link link-primary hover:underline font-semibold" %> <!-- Link com mais destaque -->
       </p>
     </div>
   </div>
